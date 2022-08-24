@@ -15,3 +15,14 @@ I have to build a working Mastermind game playable from the command line.
 5. I'll build it so the computer will guess if the player choose to create the secret code. The computer will follow the rules.
 
 6. Then I'll build it so the computer act more "human-like" with it first guessing randomly and keeping the exact matches. Then keeping the right colors used in the wrong position.
+
+--- Project planning ---
+
+1. Rules of mastermind : 12 rows of 4 holes and 4 little holes for feedback
+6 colors : white, black, yellow, green, red, blue
+No empty spots, multiple uses of a color authorized, 1 feedback (the best) for 1 color-guess
+White or black pins for feedback (black = right color right spot / white = good color but wrong spot)
+No fixed place for feedback pins
+- Maybe use 1 to 6 to avoid repetition in initials with black and blue
+- Maybe use a 2x2 grid for feedback to better see that feedback order isn't correlated with guessing spots and fill them left to right, top to bottom
+- No score count needed
