@@ -26,3 +26,12 @@ No fixed place for feedback pins
 - Maybe use 1 to 6 to avoid repetition in initials with black and blue
 - Maybe use a 2x2 grid for feedback to better see that feedback order isn't correlated with guessing spots and fill them left to right, top to bottom
 - No score count needed
+
+- /+ instead of black and - instead of white for feedback
+Object oriented : multiple classes and modules
+lib architecture : main / player / computer / display / board / game
+
+playable in the command line
+input from player, 4 numbers between 1 & 6
+desired output : feedback on the guess with boxes containing [  ] [ + ] [ - ]
+a main file which will require the different class and module files
