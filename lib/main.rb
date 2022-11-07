@@ -7,3 +7,4 @@ require_relative 'player.rb'
 
 p = Player.new
 c = Game.new(p, "test2")
+b = Board.new
