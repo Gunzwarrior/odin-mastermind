@@ -5,5 +5,5 @@ require_relative 'display.rb'
 require_relative 'game.rb'
 require_relative 'player.rb'
 
-c = Game.new
-puts c.tester
+p = Player.new
+c = Game.new(p, "test2")
