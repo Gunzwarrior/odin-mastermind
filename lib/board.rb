@@ -4,14 +4,9 @@ class Board
 
   def initialize
     @line = []
-    @full_board = [["1234", "++--"], ["165643", "--++"]]
+    @full_board = []
     @progress = []
-    4.times { progress << []}
     @feedback = []
-    4.times { feedback << []}
-    p progress
-    p feedback
-    view_board
   end
 
   def view_board
