@@ -12,7 +12,7 @@ class Game
     puts greeting
     puts
     print prompt
-    play
+    compare_guess(play, computer.solution)
   end
 
   def play
@@ -33,7 +33,6 @@ class Game
   end
 
   def validity_checker(entry)
-    p entry
     if entry.length != 4
       puts error
       print prompt
@@ -42,9 +41,8 @@ class Game
       puts error
       print prompt
       return false
-    else
-      p entry
     end
+    true
   end
 
   def wrong_character(entry)
@@ -54,6 +52,40 @@ class Game
       end
       }
     false
+  end
+
+  def compare_guess(guess, answer)
+    feedback_array = []
+    temp_array_answer = answer
+    temp_array_guess = guess
+    guess.each_index {|index|
+      if guess[index] == answer[index]
+        puts "right"
+        feedback_array.push("+")
+        temp_array_answer[index] = 0
+        temp_array_guess[index] = nil
+        p feedback_array
+        p temp_array_answer
+        p temp_array_guess
+      end
+      p index
+      p answer[index]
+}
+    guess.each_index { |index|
+      if temp_array_answer.include?(temp_array_guess[index])
+      puts "yes include"
+      index_to_delete = temp_array_answer.index { |i| i == temp_array_guess[index]}
+      temp_array_answer[index_to_delete] = 0
+      p temp_array_answer
+      end
+      }
+      p guess
+      p answer
+    if guess == answer
+      puts "you win"
+    else
+      puts "you lose"
+    end
   end
 
 end
