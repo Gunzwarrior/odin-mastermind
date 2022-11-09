@@ -29,9 +29,18 @@ class Game
   def validity_checker(entry)
     if entry.length != 4
       puts error
+    elsif wrong_character(entry)
+       puts error
     else
       p entry
     end
+  end
+
+  def wrong_character(entry)
+    entry.each { |element|
+    if element == 0 && element > 6 
+      return false
+    end }
   end
 
 end
