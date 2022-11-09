@@ -16,10 +16,16 @@ class Game
   end
 
   def play
-    player.guess = gets.chomp
-    board.progress = player.guess.split('')
-    board.progress = guess_to_integer(board.progress)
-    validity_checker(board.progress)
+    keep_going = true
+    while keep_going
+      player.guess = gets.chomp
+      board.progress = player.guess.split('')
+      board.progress = guess_to_integer(board.progress)
+      if validity_checker(board.progress)
+        keep_going = false
+      end
+    end
+    board.progress
   end
 
   def guess_to_integer(entry)
@@ -27,10 +33,15 @@ class Game
   end
 
   def validity_checker(entry)
+    p entry
     if entry.length != 4
       puts error
+      print prompt
+      return false
     elsif wrong_character(entry)
-       puts error
+      puts error
+      print prompt
+      return false
     else
       p entry
     end
@@ -38,9 +49,11 @@ class Game
 
   def wrong_character(entry)
     entry.each { |element|
-    if element == 0 && element > 6 
-      return false
-    end }
+      if element == 0 or element > 6 
+      return true
+      end
+      }
+    false
   end
 
 end
