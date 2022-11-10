@@ -11,12 +11,33 @@ class Game
     @board = Board.new
   end
 
-  def begin_game
+  def play_game
+    keep_going = true
+    round_number = 0
+    while keep_going
+      play_round
+      round_number += 1
+      if round_number == 12
+        keep_going = false
+      end
+    end
+    puts "you lose"
+  end
+
+  def play_round
+    temp_solution = computer.solution.dup
     puts greeting
     puts
     print prompt
-    compare_guess(play, computer.solution)
+    feedback_array = compare_guess(play, temp_solution)
+    board.line.push(feedback_array)
+    board.full_board.push(board.line)
+    board.line = []
+    p board.line
     p board.progress
+    p board.full_board
+    board.view_board
+    p computer.solution
   end
 
   def play
@@ -29,6 +50,9 @@ class Game
         keep_going = false
       end
     end
+    guess_array = board.progress.dup
+    board.line.push(guess_array)
+    p board.line
     board.progress
   end
 
