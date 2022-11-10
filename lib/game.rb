@@ -56,37 +56,38 @@ class Game
 
   def compare_guess(guess, answer)
     feedback_array = []
-    temp_array_answer = answer
-    temp_array_guess = guess
-    guess.each_index {|index|
-      if guess[index] == answer[index]
+    feedback_array.push(right_place(guess, answer))
+             feedback_array.push(right_number(guess, answer))
+             p feedback_array.flatten
+     end
+
+  def right_place(guess_array, answer_array)
+    feedback_array = []
+    guess_array.each_index {|index|
+      if guess_array[index] == answer_array[index]
         puts "right"
         feedback_array.push("+")
-        temp_array_answer[index] = 0
-        temp_array_guess[index] = nil
+        answer_array[index] = 0
+        guess_array[index] = nil
         p feedback_array
-        p temp_array_answer
-        p temp_array_guess
       end
       p index
-      p answer[index]
+      p answer_array[index]
 }
-    guess.each_index { |index|
-      if temp_array_answer.include?(temp_array_guess[index])
-      puts "yes include"
-      index_to_delete = temp_array_answer.index { |i| i == temp_array_guess[index]}
-      temp_array_answer[index_to_delete] = 0
-      p temp_array_answer
-      end
-      }
-      p guess
-      p answer
-    if guess == answer
-      puts "you win"
-    else
-      puts "you lose"
-    end
+    feedback_array
   end
 
+  def right_number(guess_array, answer_array)
+    feedback_array = []
+    guess_array.each_index { |index|
+      if answer_array.include?(guess_array[index])
+      puts "yes include"
+      index_to_delete = answer_array.index { |i| i == guess_array[index]}
+      answer_array[index_to_delete] = 0
+      feedback_array.push("-")
+      end
+      p index
+      }
+    feedback_array
+  end
 end
-
