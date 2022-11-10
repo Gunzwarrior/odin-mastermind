@@ -9,10 +9,14 @@ class Game
     @player = Player.new
     @computer = Computer.new
     @board = Board.new
+  end
+
+  def begin_game
     puts greeting
     puts
     print prompt
     compare_guess(play, computer.solution)
+    p board.progress
   end
 
   def play
@@ -57,9 +61,9 @@ class Game
   def compare_guess(guess, answer)
     feedback_array = []
     feedback_array.push(right_place(guess, answer))
-             feedback_array.push(right_number(guess, answer))
-             p feedback_array.flatten
-     end
+    feedback_array.push(right_number(guess, answer))
+    p feedback_array.flatten
+  end
 
   def right_place(guess_array, answer_array)
     feedback_array = []
