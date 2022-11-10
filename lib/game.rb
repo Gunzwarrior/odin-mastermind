@@ -12,6 +12,8 @@ class Game
   end
 
   def play_game
+    puts greeting
+    puts
     keep_going = true
     round_number = 0
     while keep_going
@@ -26,8 +28,6 @@ class Game
 
   def play_round
     temp_solution = computer.solution.dup
-    puts greeting
-    puts
     print prompt
     feedback_array = compare_guess(play, temp_solution)
     board.line.push(feedback_array)
