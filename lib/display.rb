@@ -25,4 +25,12 @@ module Display
     'Your guess > '
   end
 
+  def win
+    'Congratulation, you won !'
+  end
+
+  def lose
+    'No more tries, you lose.'
+  end
+  
 end

@@ -25,9 +25,10 @@ class Game
       end
     end
     if board.win
-      puts "you win"
+      puts win
     else
-      puts "you lose"
+      puts lose
+      puts "The solution was #{board.clean_output(computer.solution)}"
     end
   end
 
@@ -39,7 +40,7 @@ class Game
     board.full_board.push(board.line)
     board.line = []
     board.view_board
-    p computer.solution
+    #p computer.solution
   end
 
   def play
