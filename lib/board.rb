@@ -1,12 +1,12 @@
 
 class Board
-  attr_accessor :progress, :feedback, :line, :full_board
+  attr_accessor :progress, :win, :line, :full_board
 
   def initialize
     @line = []
     @full_board = []
     @progress = []
-    @feedback = []
+    @win = false
   end
 
   def view_board

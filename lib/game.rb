@@ -19,11 +19,17 @@ class Game
     while keep_going
       play_round
       round_number += 1
-      if round_number == 12
+    if board.win == true
+      break
+    elsif round_number == 12
         keep_going = false
       end
     end
-    puts "you lose"
+    if board.win
+      puts "you win"
+    else
+      puts "you lose"
+    end
   end
 
   def play_round
@@ -86,6 +92,7 @@ class Game
     feedback_array = []
     feedback_array.push(right_place(guess, answer))
     feedback_array.push(right_number(guess, answer))
+    board.win = true if feedback_array.include?(["+", "+", "+", "+"])
     p feedback_array.flatten
   end
 
