@@ -13,7 +13,6 @@ class Game
 
   def play_game
     puts greeting
-    puts
     keep_going = true
     round_number = 0
     while keep_going
@@ -39,9 +38,6 @@ class Game
     board.line.push(feedback_array)
     board.full_board.push(board.line)
     board.line = []
-    p board.line
-    p board.progress
-    p board.full_board
     board.view_board
     p computer.solution
   end
@@ -58,12 +54,16 @@ class Game
     end
     guess_array = board.progress.dup
     board.line.push(guess_array)
-    p board.line
     board.progress
   end
 
   def guess_to_integer(entry)
-    entry.map! {|try| try.to_i}
+    entry.map! {|try| 
+      if try == try.to_i.to_s
+        try.to_i
+      else
+        try = 7
+      end}
   end
 
   def validity_checker(entry)
@@ -81,7 +81,7 @@ class Game
 
   def wrong_character(entry)
     entry.each { |element|
-      if element == 0 or element > 6 
+      if element > 6 
       return true
       end
       }
@@ -93,21 +93,17 @@ class Game
     feedback_array.push(right_place(guess, answer))
     feedback_array.push(right_number(guess, answer))
     board.win = true if feedback_array.include?(["+", "+", "+", "+"])
-    p feedback_array.flatten
+    feedback_array.flatten
   end
 
   def right_place(guess_array, answer_array)
     feedback_array = []
     guess_array.each_index {|index|
       if guess_array[index] == answer_array[index]
-        puts "right"
         feedback_array.push("+")
         answer_array[index] = 0
         guess_array[index] = nil
-        p feedback_array
       end
-      p index
-      p answer_array[index]
 }
     feedback_array
   end
@@ -116,12 +112,10 @@ class Game
     feedback_array = []
     guess_array.each_index { |index|
       if answer_array.include?(guess_array[index])
-      puts "yes include"
       index_to_delete = answer_array.index { |i| i == guess_array[index]}
       answer_array[index_to_delete] = 0
       feedback_array.push("-")
       end
-      p index
       }
     feedback_array
   end
