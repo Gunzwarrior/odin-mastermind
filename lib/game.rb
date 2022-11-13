@@ -11,6 +11,18 @@ class Game
     @board = Board.new
   end
 
+  def select_mode
+    puts choice
+    print simple_prompt
+    keep_going = true
+    while keep_going
+      player_choice = gets.chomp
+      keep_going = false if choice_checker(player_choice)
+    end
+    play_game if player_choice == "1"
+    watch_game if player_choice == "2"
+  end
+  
   def play_game
     puts greeting
     keep_going = true
@@ -56,6 +68,10 @@ class Game
     guess_array = board.progress.dup
     board.line.push(guess_array)
     board.progress
+  end
+
+  def watch_game
+    puts "work in progress"
   end
 
   def guess_to_integer(entry)
@@ -120,4 +136,13 @@ class Game
       }
     feedback_array
   end
+end
+
+def choice_checker(entry)
+  unless entry == "1" || entry == "2"
+    puts choice_error
+    print simple_prompt
+    return false
+  end
+  true
 end

@@ -6,4 +6,4 @@ require_relative 'game.rb'
 require_relative 'player.rb'
 
 c = Game.new
-c.play_game
+c.select_mode

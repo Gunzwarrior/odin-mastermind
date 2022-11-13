@@ -1,8 +1,16 @@
 module Display
 
+  def choice
+    <<~CHOICE
+      Let's play agame of Mastermind :
+      1. to guess the code.
+      2. to make the computer guess.
+
+    CHOICE
+  end
+
   def greeting
     <<~GREETING
-      Let's play a game of Mastermind.
       You'll have to guess the 4 numbers [1-6]
       chosen by the computer in 12 guesses or less.
       You can enter 0 to leave a blank space.
@@ -21,8 +29,16 @@ module Display
     ERROR
   end
 
+  def choice_error
+    'Please enter 1 or 2'
+  end
+
   def prompt
     'Your guess > '
+  end
+
+  def simple_prompt
+    '> '
   end
 
   def win
