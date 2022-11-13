@@ -71,7 +71,8 @@ class Game
   end
 
   def watch_game
-    puts "work in progress"
+    puts solution_choice
+    print simple_prompt
   end
 
   def guess_to_integer(entry)

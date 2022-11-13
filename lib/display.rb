@@ -22,6 +22,14 @@ module Display
     GREETING
   end
 
+  def solution_choice
+    <<~SOLUTION_CHOICE
+      Enter 4 numbers [1-6] you want the computer
+      to guess.
+
+    SOLUTION_CHOICE
+  end
+
   def error
     <<~ERROR
       Please enter 4 numbers between 1 and 6

@@ -4,5 +4,6 @@ class Player
 
   def initialize
     @guess = nil
+    @solution = nil
   end
 end
