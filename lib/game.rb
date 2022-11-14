@@ -73,6 +73,15 @@ class Game
   def watch_game
     puts solution_choice
     print simple_prompt
+    keep_going = true
+    while keep_going
+      player.solution = guess_to_integer(gets.chomp.split(''))
+      if solution_checker(player.solution)
+        keep_going = false
+      end
+    end
+    p player.solution
+        
   end
 
   def guess_to_integer(entry)
@@ -97,9 +106,31 @@ class Game
     true
   end
 
+  def solution_checker(entry)
+    if entry.length != 4
+      puts error
+      print simple_prompt
+      return false
+    elsif wrong_solution(entry)
+      puts error
+      print simple_prompt
+      return false
+    end
+    true
+  end
+
   def wrong_character(entry)
     entry.each { |element|
       if element > 6 
+      return true
+      end
+      }
+    false
+  end
+
+  def wrong_solution(entry)
+    entry.each { |element|
+      if element > 6 || element == 0 
       return true
       end
       }

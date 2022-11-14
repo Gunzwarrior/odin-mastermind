@@ -1,6 +1,6 @@
 
 class Player
-  attr_accessor :guess
+  attr_accessor :guess, :solution
 
   def initialize
     @guess = nil
