@@ -45,6 +45,10 @@ module Display
     'Your guess > '
   end
 
+  def computer_prompt
+    'Computer guess > '
+  end
+
   def simple_prompt
     '> '
   end

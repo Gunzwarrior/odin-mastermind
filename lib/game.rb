@@ -44,6 +44,27 @@ class Game
     end
   end
 
+  def watch_game
+    select_solution
+    keep_going = true
+    round_number = 0
+    while keep_going
+      watch_round
+      round_number += 1
+    if board.win == true
+      break
+    elsif round_number == 12
+        keep_going = false
+      end
+    end
+    if board.win
+      puts win
+    else
+      puts lose
+      puts "The solution was #{board.clean_output(player.solution)}"
+    end
+  end
+
   def play_round
     temp_solution = computer.solution.dup
     print prompt
@@ -53,6 +74,17 @@ class Game
     board.line = []
     board.view_board
     #p computer.solution
+  end
+
+  def watch_round
+    temp_solution = player.solution.dup
+    print computer_prompt
+    feedback_array = compare_guess(watch, temp_solution)
+    board.line.push(feedback_array)
+    board.full_board.push(board.line)
+    board.line = []
+    board.view_board
+    computer.guess = []
   end
 
   def play
@@ -70,7 +102,7 @@ class Game
     board.progress
   end
 
-  def watch_game
+  def select_solution
     puts solution_choice
     print simple_prompt
     keep_going = true
@@ -80,8 +112,14 @@ class Game
         keep_going = false
       end
     end
-    p player.solution
-        
+    player.solution
+  end
+
+  def watch
+    guess_array = computer.guess_rand.dup
+    board.line.push(guess_array)
+    puts computer.guess.join
+    computer.guess
   end
 
   def guess_to_integer(entry)
