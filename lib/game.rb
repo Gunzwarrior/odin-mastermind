@@ -21,7 +21,6 @@ class Game
     end
     play_game if player_choice == "1"
     watch_game if player_choice == "2"
-    computer.create_possible_array if player_choice == "3"
   end
   
   def play_game
@@ -47,6 +46,7 @@ class Game
 
   def watch_game
     select_solution
+    computer.create_possible_array
     keep_going = true
     round_number = 0
     while keep_going
@@ -117,7 +117,7 @@ class Game
   end
 
   def watch
-    guess_array = computer.guess_rand.dup
+    guess_array = computer.guess_from_solution
     board.line.push(guess_array)
     puts computer.guess.join
     computer.guess
@@ -192,7 +192,7 @@ class Game
         answer_array[index] = 0
         guess_array[index] = nil
       end
-}
+    }
     feedback_array
   end
 
@@ -207,13 +207,26 @@ class Game
       }
     feedback_array
   end
-end
 
-def choice_checker(entry)
-  unless entry == "1" || entry == "3"
+  def choice_checker(entry)
+  unless entry == "1" || entry == "2"
     puts choice_error
     print simple_prompt
     return false
   end
   true
+  end
+
+  def feedback_comparator(feedback_array, possible_feedback)
+    return true if feedback_array != possible_feedback
+
+    false
+  end
+
+  def update_possible_array(feedback_array, possible_feedback)
+    possible_solution.each { |solution|
+    possible_solution.delete(solution) if feedback_comparator(feedback_array, possible_feedback)
+    }
+  end
+
 end

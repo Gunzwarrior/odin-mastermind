@@ -9,9 +9,8 @@ class Computer
     @possible_solution = []
   end
 
-  def guess_rand
-    4.times { guess.push(rand(1..6)) }
-    guess
+  def guess_from_solution
+    possible_solution.sample.each { |i| guess.push(i) }
   end
 
   def create_possible_array
@@ -26,8 +25,6 @@ class Computer
       answer_array[3] = z
       possible_solution.push(answer_array.dup)}}}
     }
-    p possible_solution
   end
-
 
 end
