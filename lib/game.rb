@@ -21,6 +21,7 @@ class Game
     end
     play_game if player_choice == "1"
     watch_game if player_choice == "2"
+    computer.create_possible_array if player_choice == "3"
   end
   
   def play_game
@@ -209,7 +210,7 @@ class Game
 end
 
 def choice_checker(entry)
-  unless entry == "1" || entry == "2"
+  unless entry == "1" || entry == "3"
     puts choice_error
     print simple_prompt
     return false
