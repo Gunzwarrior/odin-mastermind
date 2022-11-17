@@ -226,6 +226,7 @@ class Game
 
   def update_possible_array(feedback_array, computer_guess)
     computer.possible_solution.delete_if { |solution|
+      break if feedback_array == ["+", "+", "+", "+"]
     solution.intersect?(no_matching_number(feedback_array, computer_guess))}
     p computer.possible_solution
   end
