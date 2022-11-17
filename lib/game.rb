@@ -85,6 +85,7 @@ class Game
     board.full_board.push(board.line)
     board.line = []
     board.view_board
+    update_possible_array(feedback_array, computer.guess)
     computer.guess = []
   end
 
@@ -217,16 +218,16 @@ class Game
   true
   end
 
-  def feedback_comparator(feedback_array, possible_feedback)
-    return true if feedback_array != possible_feedback
-
-    false
+  def no_matching_number(feedback_array, computer_guess)
+    if feedback_array == []
+      computer_guess.uniq
+    end
   end
 
-  def update_possible_array(feedback_array, possible_feedback)
-    possible_solution.each { |solution|
-    possible_solution.delete(solution) if feedback_comparator(feedback_array, possible_feedback)
-    }
+  def update_possible_array(feedback_array, computer_guess)
+    computer.possible_solution.delete_if { |solution|
+    solution.intersect?(no_matching_number(feedback_array, computer_guess))}
+    p computer.possible_solution
   end
 
 end
