@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Player class representing players choices
+# Player class representing the player's choices
 class Player
   attr_accessor :guess, :solution
 
