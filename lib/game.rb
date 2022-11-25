@@ -80,7 +80,8 @@ class Game
   def watch_round
     temp_solution = player.solution.dup
     print computer_prompt
-    feedback_array = compare_guess(watch, temp_solution)
+    temp_guess = watch.dup
+    feedback_array = compare_guess(temp_guess, temp_solution)
     board.line.push(feedback_array)
     board.full_board.push(board.line)
     board.line = []
@@ -224,11 +225,17 @@ class Game
     zero = 4 - feedback_array.length
     temp_sol = solution.dup
     sol_plus = 0
+    spot_to_delete = []
+    temp_guess = computer_guess.dup
     temp_sol.each_index { |i|
-      if temp_sol[i] == computer_guess[i]
-        temp_sol.delete_at(i)
-        sol_plus +=1}
-    sol_minus = temp_sol.intersection(computer_guess).length
+      if temp_sol[i] == temp_guess[i]
+        sol_plus +=1
+        temp_sol[i] = nil
+        temp_guess[i] = nil
+      end}
+      temp_sol.compact!
+      temp_guess.compact!
+    sol_minus = temp_sol.intersection(temp_guess).length
     sol_zero = 4 - sol_plus - sol_minus
       sign_array = [plus, minus, zero]
       sol_sign_array = [sol_plus, sol_minus, sol_zero]
@@ -239,12 +246,11 @@ class Game
     return if feedback_array == ["+", "+", "+", "+"]
     computer.possible_solution.delete_if { |solution|
       if feedback_array == []
-        solution.intersect?(computer_guess.uniq))
+        solution.intersect?(computer_guess.uniq)
       else
         !feedback_compatible(feedback_array, solution, computer_guess)
       end
         }
-    p computer.possible_solution
   end
 
 end
