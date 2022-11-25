@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 
-require_relative 'board.rb'
-require_relative 'computer.rb'
-require_relative 'display.rb'
-require_relative 'game.rb'
-require_relative 'player.rb'
+require_relative 'board'
+require_relative 'computer'
+require_relative 'display'
+require_relative 'game'
+require_relative 'player'
 
 c = Game.new
 c.select_mode

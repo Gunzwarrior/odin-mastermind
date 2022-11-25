@@ -56,7 +56,7 @@ class Game
       break
     elsif round_number == 12
         keep_going = false
-      end
+    end
     end
     if board.win
       puts win
@@ -74,7 +74,6 @@ class Game
     board.full_board.push(board.line)
     board.line = []
     board.view_board
-    #p computer.solution
   end
 
   def watch_round
@@ -225,7 +224,6 @@ class Game
     zero = 4 - feedback_array.length
     temp_sol = solution.dup
     sol_plus = 0
-    spot_to_delete = []
     temp_guess = computer_guess.dup
     temp_sol.each_index { |i|
       if temp_sol[i] == temp_guess[i]
