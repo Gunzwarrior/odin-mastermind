@@ -1,7 +1,9 @@
+# frozen_string_literal: true
 
+# Computer class to represent the computer's choices
 class Computer
   attr_accessor :solution, :guess, :possible_solution
-  
+
   def initialize
     @solution = []
     @guess = []
@@ -15,16 +17,18 @@ class Computer
 
   def create_possible_array
     answer_array = []
-    (1..6).each { |w|
+    (1..6).each do |w|
       answer_array[0] = w
-      (1..6).each { |x|
-      answer_array[1] = x
-      (1..6).each {|y|
-      answer_array[2] = y
-      (1..6).each { |z|
-      answer_array[3] = z
-      possible_solution.push(answer_array.dup)}}}
-    }
+      (1..6).each do |x|
+        answer_array[1] = x
+        (1..6).each do |y|
+          answer_array[2] = y
+          (1..6).each do |z|
+            answer_array[3] = z
+            possible_solution.push(answer_array.dup)
+          end
+        end
+      end
+    end
   end
-
 end
