@@ -218,16 +218,32 @@ class Game
   true
   end
 
-  def no_matching_number(feedback_array, computer_guess)
-    if feedback_array == []
-      computer_guess.uniq
-    end
+  def feedback_compatible(feedback_array, solution, computer_guess)
+    plus = feedback_array.count("+")
+    minus = feedback_array.count("-")
+    zero = 4 - feedback_array.length
+    temp_sol = solution.dup
+    sol_plus = 0
+    temp_sol.each_index { |i|
+      if temp_sol[i] == computer_guess[i]
+        temp_sol.delete_at(i)
+        sol_plus +=1}
+    sol_minus = temp_sol.intersection(computer_guess).length
+    sol_zero = 4 - sol_plus - sol_minus
+      sign_array = [plus, minus, zero]
+      sol_sign_array = [sol_plus, sol_minus, sol_zero]
+    sign_array == sol_sign_array
   end
 
   def update_possible_array(feedback_array, computer_guess)
+    return if feedback_array == ["+", "+", "+", "+"]
     computer.possible_solution.delete_if { |solution|
-      break if feedback_array == ["+", "+", "+", "+"]
-    solution.intersect?(no_matching_number(feedback_array, computer_guess))}
+      if feedback_array == []
+        solution.intersect?(computer_guess.uniq))
+      else
+        !feedback_compatible(feedback_array, solution, computer_guess)
+      end
+        }
     p computer.possible_solution
   end
 
