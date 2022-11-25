@@ -1,5 +1,7 @@
-module Display
+# frozen_string_literal: true
 
+# Display module to keep all written output
+module Display
   def choice
     <<~CHOICE
       Let's play agame of Mastermind :
@@ -60,5 +62,4 @@ module Display
   def lose
     'No more tries, you lose.'
   end
-  
 end
