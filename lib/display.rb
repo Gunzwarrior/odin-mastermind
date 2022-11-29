@@ -15,7 +15,6 @@ module Display
     <<~GREETING
       You'll have to guess the 4 numbers [1-6]
       chosen by the computer in 12 guesses or less.
-      You can enter 0 to leave a blank space.
       [+] means right number at the right place.
       [-] means right number at a wrong place.
       [ ] means wrong number.
